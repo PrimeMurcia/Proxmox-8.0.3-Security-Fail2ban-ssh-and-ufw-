@@ -1,4 +1,4 @@
-# Fail2Ban Configuration Readme
+# Fail2Ban Configuration For Proxmox 8.0.3
 
 This Git repository contains Fail2Ban configuration files tailored for enhanced security on your system. Follow the instructions below to set up and customize the configurations.
 
