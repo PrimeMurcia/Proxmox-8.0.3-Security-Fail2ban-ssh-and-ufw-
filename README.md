@@ -1,5 +1,4 @@
-# Fail2Ban Installation and Configuration on Proxmox 8 by Prime Murcia
-
+# Fail2Ban Installation and Configuration on Proxmox 8
 
 ## Installation
 
@@ -10,9 +9,26 @@
     sudo apt-get install fail2ban
     ```
 
+2. **Install UFW (Uncomplicated Firewall):**
+
+    ```bash
+    sudo apt-get install ufw
+    ```
+
+3. **Configure UFW:**
+
+    ```bash
+    sudo ufw allow 8006
+    sudo ufw allow 443
+    sudo ufw allow 80
+    sudo ufw allow 11797 (Replace with your ssh port) 
+    sudo ufw deny from any to any port 22
+    sudo ufw enable
+    ```
+
 ## Configuration
 
-2. **Create `jail.local` configuration file:**
+4. **Create `jail.local` configuration file:**
 
     Open the `jail.local` file for editing:
 
@@ -43,7 +59,7 @@
     bantime   = 1d
     ```
 
-3. **Create `proxmox.conf` filter file:**
+5. **Create `proxmox.conf` filter file:**
 
     Open the `proxmox.conf` file for editing:
 
@@ -59,7 +75,7 @@
     ignoreregex =
     ```
 
-4. **Restart Fail2Ban:**
+6. **Restart Fail2Ban:**
 
     ```bash
     sudo systemctl restart fail2ban
@@ -69,8 +85,4 @@
 
 Fail2Ban is now configured to monitor the specified ports and log files for suspicious activity. If an IP address exceeds the defined threshold, it will be automatically banned for the specified duration.
 
-You can check Fail2Ban's status and view banned IP addresses with the following command:
-
-```bash
-sudo fail2ban-client status
-sudo fail2ban-client status proxmox
+UFW is configured to allow traffic on ports 8006, 443, 80, and 11797 while denying SSH access to root. Adjust the configuration parameters as needed for your specific requirements.
