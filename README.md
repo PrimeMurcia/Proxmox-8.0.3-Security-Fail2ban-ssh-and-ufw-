@@ -21,7 +21,7 @@
     sudo ufw allow 8006
     sudo ufw allow 443
     sudo ufw allow 80
-    sudo ufw allow 11797 (Replace with your ssh port) 
+    sudo ufw allow 69 (Replace with your ssh port) 
     sudo ufw deny from any to any port 22
     sudo ufw enable
     ```
